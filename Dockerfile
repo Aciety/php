@@ -18,10 +18,11 @@ RUN apt-get update && apt-get install -y -o DPkg::options::='--force-confdef' -o
 	libkrb5-dev \
 	libmysqlclient-dev \
 	libzip-dev \
+    libexif-dev \
 	git \
     && apt-get clean \
     && apt-get autoremove -y \
-    && docker-php-ext-install -j$(nproc) pdo_mysql mysqli zip iconv mcrypt intl curl \
+    && docker-php-ext-install -j$(nproc) pdo_mysql mysqli zip iconv mcrypt intl curl exif \
     && pecl install imagick \
     && docker-php-ext-enable imagick \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
