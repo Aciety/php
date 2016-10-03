@@ -20,6 +20,8 @@ RUN apt-get update && apt-get install -y -o DPkg::options::='--force-confdef' -o
 	libzip-dev \
 	libexif-dev \
 	git \
+        optipng \
+        jpegoptim \
     && apt-get clean \
     && apt-get autoremove -y \
     && docker-php-ext-install -j$(nproc) pdo_mysql mysqli zip iconv mcrypt intl curl exif opcache \
