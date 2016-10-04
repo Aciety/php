@@ -34,4 +34,7 @@ RUN apt-get update && apt-get install -y -o DPkg::options::='--force-confdef' -o
     && curl --output composer -Ss https://getcomposer.org/download/1.2.0/composer.phar \
     && mv composer /usr/bin/composer \
     && chmod 755 /usr/bin/composer \
-    && chown root:root /usr/bin/composer
+    && chown root:root /usr/bin/composer \
+    && curl --output wp -Ss https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
+    && chmod 755 wp \
+    && mv wp /usr/local/bin/wp
