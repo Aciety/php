@@ -1,4 +1,4 @@
-FROM php:7.0.11-fpm
+FROM php:7.0.13-fpm
 ENV APT_LISTCHANGES_FRONTEND mail
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get install -y -o DPkg::options::='--force-confdef' -o Dpkg::Options::='--force-confold' \
