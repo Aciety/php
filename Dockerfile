@@ -1,4 +1,4 @@
-FROM php:7.1.3-fpm
+FROM php:7.1-fpm
 ENV APT_LISTCHANGES_FRONTEND mail
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get install -y -o DPkg::options::='--force-confdef' -o Dpkg::Options::='--force-confold' \
@@ -38,4 +38,7 @@ RUN apt-get update && apt-get install -y -o DPkg::options::='--force-confdef' -o
     && chown root:root /usr/bin/composer \
     && curl --output wp -Ss https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
     && chmod 755 wp \
-    && mv wp /usr/local/bin/wp
+    && mv wp /usr/local/bin/wp \
+    && groupadd -g 1001 supervisor && \
+    && useradd -m -g 1001 -u 1001 supervisor
+
