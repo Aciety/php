@@ -1,6 +1,7 @@
 FROM php:7.1-fpm
 ENV APT_LISTCHANGES_FRONTEND mail
 ENV DEBIAN_FRONTEND noninteractive
+ADD ./aciety.ini /usr/local/etc/php/conf.d/aciety.ini
 RUN apt-get update && apt-get install -y -o DPkg::options::='--force-confdef' -o Dpkg::Options::='--force-confold' \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
@@ -41,4 +42,3 @@ RUN apt-get update && apt-get install -y -o DPkg::options::='--force-confdef' -o
     && mv wp /usr/local/bin/wp \
     && groupadd -g 1001 supervisor \
     && useradd -m -g 1001 -u 1001 supervisor
-
