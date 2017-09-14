@@ -14,6 +14,7 @@ RUN apt-get update && apt-get install -y -o DPkg::options::='--force-confdef' -o
 	curl \
 	libcurl4-gnutls-dev \
 	libicu-dev \
+        librabbitmq \
 	libc-client2007e-dev \
 	libc-client2007e \
 	libkrb5-dev \
