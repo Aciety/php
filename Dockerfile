@@ -30,7 +30,7 @@ RUN apt-get update && apt-get install -y -o DPkg::options::='--force-confdef' -o
     && apt-get autoremove -y \
     && docker-php-ext-install -j$(nproc) pdo_mysql mysqli zip iconv mcrypt intl curl exif opcache \
     && pecl install imagick APCu amqp \
-    && docker-php-ext-enable imagick apcu \
+    && docker-php-ext-enable imagick apcu amqp \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
     && docker-php-ext-install -j$(nproc) gd imap \
