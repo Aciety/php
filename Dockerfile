@@ -4,8 +4,6 @@ ENV DEBIAN_FRONTEND noninteractive
 ADD ./aciety.ini /usr/local/etc/php/conf.d/aciety.ini
 RUN apt-get update && apt-get install -y -o DPkg::options::='--force-confdef' -o Dpkg::Options::='--force-confold' \
         libfreetype6-dev \
-        libjpeg62-turbo-dev \
-        libpng-dev \
 	libcurl3 \
 	curl \
 	libcurl4-gnutls-dev \
@@ -19,8 +17,6 @@ RUN apt-get update && apt-get install -y -o DPkg::options::='--force-confdef' -o
 	libexif-dev \
         libsasl2-dev \
 	git \
-        optipng \
-        jpegoptim \
         mysql-client \
     && apt-get clean \
     && apt-get autoremove -y \
