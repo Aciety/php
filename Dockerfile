@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -y -o DPkg::options::='--force-confdef' -o
         librabbitmq-dev \
 	libc-client2007e-dev \
 	libc-client2007e \
+        libjpeg-dev \
 	libkrb5-dev \
 	libmariadbclient-dev-compat \
 	libzip-dev \
