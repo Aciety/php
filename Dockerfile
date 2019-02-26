@@ -31,8 +31,5 @@ RUN apt-get update && apt-get install -y -o DPkg::options::='--force-confdef' -o
     && mv composer /usr/bin/composer \
     && chmod 755 /usr/bin/composer \
     && chown root:root /usr/bin/composer \
-    && curl --output wp -Ss https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
-    && chmod 755 wp \
-    && mv wp /usr/local/bin/wp \
     && groupadd -g 1001 supervisor \
     && useradd -m -g 1001 -u 1001 supervisor
