@@ -19,6 +19,8 @@ RUN apt-get update && apt-get install -y -o DPkg::options::='--force-confdef' -o
         libsasl2-dev \
 	git \
         mysql-client \
+        unzip \
+        zip \
     && apt-get clean \
     && apt-get autoremove -y \
     && docker-php-ext-install -j$(nproc) pdo_mysql mysqli zip iconv intl bcmath curl exif opcache \
