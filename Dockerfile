@@ -4,7 +4,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ADD ./aciety.ini /usr/local/etc/php/conf.d/aciety.ini
 RUN apt-get update && apt-get install -y -o DPkg::options::='--force-confdef' -o Dpkg::Options::='--force-confold' \
         libfreetype6-dev \
-	libcurl3 \
+	libcurl4 \
 	curl \
 	libcurl4-gnutls-dev \
 	libicu-dev \
@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y -o DPkg::options::='--force-confdef' -o
 	libexif-dev \
         libsasl2-dev \
 	git \
-        mysql-client \
+        mariadb-client \
         unzip \
         zip \
     && apt-get clean \
