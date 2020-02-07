@@ -4,23 +4,23 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV PHP_OPENSSL yes
 ADD ./aciety.ini /usr/local/etc/php/conf.d/aciety.ini
 RUN apt-get update && apt-get install -y -o DPkg::options::='--force-confdef' -o Dpkg::Options::='--force-confold' \
-        libfreetype6-dev \
-        libssl-dev \
-	libcurl4 \
-        libssl1.0 \
 	curl \
-	libcurl4-gnutls-dev \
-	libicu-dev \
-        librabbitmq-dev \
-	libc-client2007e-dev \
+	git \
 	libc-client2007e \
-        libjpeg-dev \
+	libc-client2007e-dev \
+	libcurl4 \
+	libcurl4-gnutls-dev \
+	libexif-dev \
+	libicu-dev \
 	libkrb5-dev \
 	libmariadbclient-dev-compat \
 	libzip-dev \
-	libexif-dev \
+        libfreetype6-dev \
+        libjpeg-dev \
+        librabbitmq-dev \
         libsasl2-dev \
-	git \
+        libssl-dev \
+        libssl1.0 \
         mariadb-client \
         unzip \
         zip \
@@ -29,7 +29,7 @@ RUN apt-get update && apt-get install -y -o DPkg::options::='--force-confdef' -o
     && docker-php-ext-install -j$(nproc) pdo_mysql mysqli zip iconv intl bcmath curl exif opcache \
     && pecl install APCu amqp redis \
     && docker-php-ext-enable apcu amqp bcmath redis \
-    && docker-php-ext-configure gd \
+    && docker-php-ext-configure gd --with-jpeg --with-freetype \
     && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
     && docker-php-ext-install -j$(nproc) gd imap \
     && rm -rf /var/lib/apt/lists/* \
