@@ -17,6 +17,7 @@ RUN apt-get update && apt-get install -y -o DPkg::options::='--force-confdef' -o
 	libzip-dev \
         libfreetype6-dev \
         libjpeg-dev \
+	libwebp-dev \
         librabbitmq-dev \
         libsasl2-dev \
         libssl-dev \
