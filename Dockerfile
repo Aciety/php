@@ -34,7 +34,7 @@ RUN apt-get update && apt-get install -y -o DPkg::options::='--force-confdef' -o
     && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
     && docker-php-ext-install -j$(nproc) gd imap \
     && rm -rf /var/lib/apt/lists/* \
-    && curl --output composer -Ss https://getcomposer.org/download/1.9.0/composer.phar \
+    && curl --output composer -Ss https://getcomposer.org/download/2.0.0-RC1/composer.phar \
     && mv composer /usr/bin/composer \
     && chmod 755 /usr/bin/composer \
     && chown root:root /usr/bin/composer \
