@@ -32,7 +32,7 @@ RUN apt-get update && apt-get install -y -o DPkg::options::='--force-confdef' -o
     && docker-php-ext-enable apcu amqp bcmath redis sodium \
     && docker-php-ext-configure gd --with-jpeg --with-webp --with-freetype \
     && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
-    && docker-php-ext-install -j$(nproc) gd imap \
+    && docker-php-ext-install -j$(nproc) gd imap sockets \
     && rm -rf /var/lib/apt/lists/* \
     && curl --output composer -Ss https://getcomposer.org/download/2.0.0-RC1/composer.phar \
     && mv composer /usr/bin/composer \
@@ -40,3 +40,9 @@ RUN apt-get update && apt-get install -y -o DPkg::options::='--force-confdef' -o
     && chown root:root /usr/bin/composer \
     && groupadd -g 1001 supervisor \
     && useradd -m -g 1001 -u 1001 supervisor
+ADD https://chromedriver.storage.googleapis.com/86.0.4240.22/chromedriver_linux64.zip /tmp/chromedriver.zip
+RUN cd /tmp && \
+    unzip chromedriver.zip && \
+    chmod +x chromedriver && \
+    rm chromedriver.zip && \
+    mv chromedriver /usr/local/bin/chromedriver
