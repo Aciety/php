@@ -33,7 +33,6 @@ RUN apt-get update && apt-get install -y -o DPkg::options::='--force-confdef' -o
     && docker-php-ext-configure gd --with-jpeg --with-webp --with-freetype \
     && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
     && docker-php-ext-install -j$(nproc) gd imap sockets \
-    && rm -rf /var/lib/apt/lists/* \
     && curl --output composer -Ss https://getcomposer.org/download/2.0.0-RC1/composer.phar \
     && mv composer /usr/bin/composer \
     && chmod 755 /usr/bin/composer \
@@ -41,8 +40,11 @@ RUN apt-get update && apt-get install -y -o DPkg::options::='--force-confdef' -o
     && groupadd -g 1001 supervisor \
     && useradd -m -g 1001 -u 1001 supervisor
 ADD https://chromedriver.storage.googleapis.com/86.0.4240.22/chromedriver_linux64.zip /tmp/chromedriver.zip
+ADD https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb /tmp/chrome.deb
 RUN cd /tmp && \
     unzip chromedriver.zip && \
     chmod +x chromedriver && \
     rm chromedriver.zip && \
-    mv chromedriver /usr/local/bin/chromedriver
+    mv chromedriver /usr/local/bin/chromedriver && \
+    apt-get install -y /tmp/chrome.deb && \
+    rm /tmp/chrome.deb
