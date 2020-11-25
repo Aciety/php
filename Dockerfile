@@ -39,12 +39,3 @@ RUN apt-get update && apt-get install -y -o DPkg::options::='--force-confdef' -o
     && chown root:root /usr/bin/composer \
     && groupadd -g 1001 supervisor \
     && useradd -m -g 1001 -u 1001 supervisor
-ADD https://chromedriver.storage.googleapis.com/86.0.4240.22/chromedriver_linux64.zip /tmp/chromedriver.zip
-ADD https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb /tmp/chrome.deb
-RUN cd /tmp && \
-    unzip chromedriver.zip && \
-    chmod +x chromedriver && \
-    rm chromedriver.zip && \
-    mv chromedriver /usr/local/bin/chromedriver && \
-    apt-get install -y /tmp/chrome.deb && \
-    rm /tmp/chrome.deb
