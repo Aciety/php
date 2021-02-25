@@ -1,4 +1,4 @@
-FROM php:7.4-fpm
+FROM php:8.0-fpm
 ENV APT_LISTCHANGES_FRONTEND mail
 ENV DEBIAN_FRONTEND noninteractive
 ENV PHP_OPENSSL yes
@@ -28,8 +28,8 @@ RUN apt-get update && apt-get install -y -o DPkg::options::='--force-confdef' -o
     && apt-get clean \
     && apt-get autoremove -y \
     && docker-php-ext-install -j$(nproc) pdo_mysql mysqli zip iconv intl bcmath curl exif opcache \
-    && pecl install APCu amqp redis \
-    && docker-php-ext-enable apcu amqp bcmath redis sodium \
+    && pecl install APCu redis \
+    && docker-php-ext-enable apcu bcmath redis sodium \
     && docker-php-ext-configure gd --with-jpeg --with-webp --with-freetype \
     && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
     && docker-php-ext-install -j$(nproc) gd imap sockets \
