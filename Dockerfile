@@ -5,6 +5,7 @@ ENV PHP_OPENSSL yes
 ADD ./aciety.ini /usr/local/etc/php/conf.d/aciety.ini
 RUN apt-get update && apt-get install -y -o DPkg::options::='--force-confdef' -o Dpkg::Options::='--force-confold' \
 	curl \
+        ffmpeg \
 	git \
 	libc-client2007e \
 	libc-client2007e-dev \
