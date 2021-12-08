@@ -1,4 +1,4 @@
-FROM php:8.0-fpm
+FROM php:8.1-fpm
 ENV APT_LISTCHANGES_FRONTEND mail
 ENV DEBIAN_FRONTEND noninteractive
 ENV PHP_OPENSSL yes
