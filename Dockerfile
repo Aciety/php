@@ -26,6 +26,7 @@ RUN apt-get update && apt-get install -y -o DPkg::options::='--force-confdef' -o
         mariadb-client \
         unzip \
         zip \
+    && apt-get dist-upgrade -y \
     && apt-get clean \
     && apt-get autoremove -y \
     && docker-php-ext-install -j$(nproc) pdo_mysql mysqli zip iconv intl bcmath curl exif opcache \
@@ -38,5 +39,8 @@ RUN apt-get update && apt-get install -y -o DPkg::options::='--force-confdef' -o
     && mv composer /usr/bin/composer \
     && chmod 755 /usr/bin/composer \
     && chown root:root /usr/bin/composer \
+    && curl -LO https://github.com/deployphp/deployer/releases/download/v7.0.0-rc.3/deployer.phar \
+    && mv deployer.phar /usr/bin/dep \
+    && chmod +x /usr/bin/dep \
     && groupadd -g 1001 supervisor \
     && useradd -m -g 1001 -u 1001 supervisor
