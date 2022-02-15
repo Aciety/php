@@ -28,6 +28,10 @@ RUN apt-get update && apt-get install -y -o DPkg::options::='--force-confdef' -o
         mariadb-client \
         unzip \
         zip \
+    && wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
+    && dpkg -i google-chrome-stable_current_amd64.deb \
+    && apt-get -f install -y \
+    && rm google-chrome-stable_current_amd64.deb \
     && apt-get dist-upgrade -y \
     && apt-get clean \
     && apt-get autoremove -y \
