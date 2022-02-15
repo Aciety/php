@@ -27,10 +27,11 @@ RUN apt-get update && apt-get install -y -o DPkg::options::='--force-confdef' -o
         libssl1.0 \
         mariadb-client \
         unzip \
+        wget \
+        wkhtmltopdf \
         zip \
     && wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
-    && dpkg -i google-chrome-stable_current_amd64.deb \
-    && apt-get -f install -y \
+    && apt-get -f install -y ./google-chrome-stable_current_amd64.deb \
     && rm google-chrome-stable_current_amd64.deb \
     && apt-get dist-upgrade -y \
     && apt-get clean \
