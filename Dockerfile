@@ -30,6 +30,7 @@ RUN apt-get update -qq \
     libzip-dev \
     mariadb-client \
     unzip \
+    uuid-dev \
     wget \
     wkhtmltopdf \
     zip \
