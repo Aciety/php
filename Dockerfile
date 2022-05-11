@@ -28,6 +28,7 @@ RUN apt-get update -qq \
     libssl1.0 \
     libwebp-dev \
     libzip-dev \
+    libavif-dev \
     mariadb-client \
     unzip \
     uuid-dev \
@@ -40,7 +41,7 @@ RUN apt-get update -qq \
   && docker-php-ext-install -j$(nproc) pdo_mysql zip iconv intl bcmath curl exif opcache \
   && pecl install APCu redis pcov uuid \
   && docker-php-ext-enable apcu bcmath redis sodium pcov uuid \
-  && docker-php-ext-configure gd --with-jpeg --with-webp --with-freetype \
+  && docker-php-ext-configure gd --with-jpeg --with-webp --with-freetype --with-avif \
   && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
   && docker-php-ext-install -j$(nproc) gd imap sockets \
   && curl --output composer -Ss https://getcomposer.org/download/2.3.5/composer.phar \
