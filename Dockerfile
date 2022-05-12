@@ -29,6 +29,7 @@ RUN apt-get update -qq \
     libwebp-dev \
     libzip-dev \
     libavif-dev \
+    poppler-utils \
     mariadb-client \
     unzip \
     uuid-dev \
