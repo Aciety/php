@@ -40,8 +40,8 @@ RUN apt-get update -qq \
   && apt-get clean \
   && apt-get autoremove -y \
   && docker-php-ext-install -j$(nproc) pdo_mysql zip iconv intl bcmath curl exif opcache \
-  && pecl install APCu redis pcov uuid rar \
-  && docker-php-ext-enable apcu bcmath redis sodium pcov uuid rar \
+  && pecl install APCu redis pcov uuid \
+  && docker-php-ext-enable apcu bcmath redis sodium pcov uuid \
   && docker-php-ext-configure gd --with-jpeg --with-webp --with-freetype --with-avif \
   && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
   && docker-php-ext-install -j$(nproc) gd imap sockets \
