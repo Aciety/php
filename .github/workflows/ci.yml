@@ -39,6 +39,8 @@ jobs:
             ghcr.io/aciety/php:${{ github.sha }}
             ghcr.io/aciety/php:latest
           push: true
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
