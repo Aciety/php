@@ -3,7 +3,7 @@ ENV APT_LISTCHANGES_FRONTEND mail
 ENV CFLAGS="$CFLAGS -D_GNU_SOURCE"
 ENV DEBIAN_FRONTEND noninteractive
 ENV PHP_OPENSSL yes
-ADD ./aciety.ini /usr/local/etc/php/conf.d/aciety.ini
+ADD ./aciety.ini /usr/local/etc/php/conf.d/zz-aciety.ini
 RUN apt-get update -qq \
   && apt-get dist-upgrade -y \
   && apt-get install -y \
