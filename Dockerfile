@@ -34,7 +34,6 @@ RUN apt-get update -qq \
     unzip \
     uuid-dev \
     wget \
-    wkhtmltopdf \
     zip \
   && apt-get dist-upgrade -y \
   && apt-get clean \
