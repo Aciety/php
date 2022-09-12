@@ -44,7 +44,7 @@ RUN apt-get update -qq \
   && docker-php-ext-configure gd --with-jpeg --with-webp --with-freetype --with-avif \
   && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
   && docker-php-ext-install -j$(nproc) gd imap sockets \
-  && curl --output composer -Ss https://getcomposer.org/download/2.3.10/composer.phar \
+  && curl --output composer -Ss https://getcomposer.org/download/2.4.1/composer.phar \
   && mv composer /usr/bin/composer \
   && chmod 755 /usr/bin/composer \
   && chown root:root /usr/bin/composer \
