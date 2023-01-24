@@ -38,7 +38,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           tags: |
             ghcr.io/aciety/php:${{ github.sha }}
-            ghcr.io/aciety/php:latest
+            ghcr.io/aciety/php:8.1
           push: true
 
       - name: Image digest
