@@ -6,6 +6,7 @@ on:
     - cron:  '0 0 * * *'
   push:
     branches:
+      - '8.1'
       - 'latest'
 
 jobs:
