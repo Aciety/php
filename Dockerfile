@@ -44,11 +44,11 @@ RUN apt-get update -qq \
   && docker-php-ext-configure gd --with-jpeg --with-webp --with-freetype --with-avif \
   && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
   && docker-php-ext-install -j$(nproc) gd imap sockets \
-  && curl --output composer -Ss https://getcomposer.org/download/2.5.1/composer.phar \
+  && curl --output composer -Ss https://getcomposer.org/download/2.5.2/composer.phar \
   && mv composer /usr/bin/composer \
   && chmod 755 /usr/bin/composer \
   && chown root:root /usr/bin/composer \
-  && curl -LO https://github.com/deployphp/deployer/releases/download/v7.1.3/deployer.phar \
+  && curl -LO https://github.com/deployphp/deployer/releases/download/v7.1.4/deployer.phar \
   && mv deployer.phar /usr/bin/dep \
   && chmod +x /usr/bin/dep \
   && groupadd -g 1001 supervisor \
