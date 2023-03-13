@@ -48,7 +48,7 @@ RUN apt-get update -qq \
   && mv composer /usr/bin/composer \
   && chmod 755 /usr/bin/composer \
   && chown root:root /usr/bin/composer \
-  && curl -LO https://github.com/deployphp/deployer/releases/download/v7.2.0/deployer.phar \
+  && curl -LO https://github.com/deployphp/deployer/releases/download/v7.2.1/deployer.phar \
   && mv deployer.phar /usr/bin/dep \
   && chmod +x /usr/bin/dep \
   && groupadd -g 1001 supervisor \
