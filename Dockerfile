@@ -11,7 +11,7 @@ RUN apt-get update -qq \
     curl \
     ffmpeg \
     git \
-    graphicsmagick
+    graphicsmagick \
     libc-client2007e \
     libc-client2007e-dev \
     libcurl4 \
