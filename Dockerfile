@@ -18,6 +18,7 @@ RUN apt-get update -qq \
     libcurl4-gnutls-dev \
     libexif-dev \
     libfreetype6-dev \
+    libgraphicsmagick1-dev \
     libicu-dev \
     libjpeg-dev \
     libkrb5-dev \
