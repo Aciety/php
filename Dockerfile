@@ -11,17 +11,16 @@ RUN apt-get update -qq \
     curl \
     ffmpeg \
     git \
-    graphicsmagick \
     libc-client2007e \
     libc-client2007e-dev \
     libcurl4 \
     libcurl4-gnutls-dev \
     libexif-dev \
     libfreetype6-dev \
-    libgraphicsmagick1-dev \
     libicu-dev \
     libjpeg-dev \
     libkrb5-dev \
+    libmagick++-dev \
     libmariadbclient-dev-compat \
     libnss3 \
     librabbitmq-dev \
@@ -41,8 +40,8 @@ RUN apt-get update -qq \
   && apt-get clean \
   && apt-get autoremove -y \
   && docker-php-ext-install -j$(nproc) pdo_mysql zip iconv intl bcmath curl exif opcache \
-  && pecl install APCu redis pcov uuid gmagick-beta \
-  && docker-php-ext-enable apcu bcmath redis sodium pcov uuid gmagick \
+  && pecl install APCu redis pcov uuid imagick \
+  && docker-php-ext-enable apcu bcmath redis sodium pcov uuid imagick \
   && docker-php-ext-configure gd --with-jpeg --with-webp --with-freetype --with-avif \
   && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
   && docker-php-ext-install -j$(nproc) gd imap sockets \
@@ -54,4 +53,9 @@ RUN apt-get update -qq \
   && mv deployer.phar /usr/bin/dep \
   && chmod +x /usr/bin/dep \
   && groupadd -g 1001 supervisor \
-  && useradd -m -g 1001 -u 1001 supervisor
+  && useradd -m -g 1001 -u 1001 supervisor \
+  && curl -LO https://fonts.google.com/download?family=Roboto \
+  && mkdir -p /usr/share/fonts/truetype/Roboto \
+  && unzip $Roboto.zip -d /usr/share/fonts/truetype/Roboto \
+  && rm Roboto.zip \
+  && fc-cache
