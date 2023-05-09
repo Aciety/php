@@ -39,7 +39,7 @@ RUN apt-get update -qq \
   && apt-get dist-upgrade -y \
   && apt-get clean \
   && apt-get autoremove -y \
-  && docker-php-ext-install -j$(nproc) pdo_mysql zip iconv intl bcmath curl exif opcache \
+  && docker-php-ext-install -j$(nproc) pdo_mysql zip iconv intl bcmath curl exif opcache bz2 \
   && pecl install APCu redis pcov uuid imagick \
   && docker-php-ext-enable apcu bcmath redis sodium pcov uuid imagick \
   && docker-php-ext-configure gd --with-jpeg --with-webp --with-freetype --with-avif \
