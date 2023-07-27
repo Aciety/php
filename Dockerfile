@@ -26,7 +26,7 @@ RUN apt-get update -qq \
     librabbitmq-dev \
     libsasl2-dev \
     libssl-dev \
-    libssl1.1 \
+    libssl1.0 \
     libwebp-dev \
     libzip-dev \
     libavif-dev \
