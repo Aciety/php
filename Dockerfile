@@ -44,7 +44,7 @@ RUN apt-get update -qq \
   && docker-php-ext-enable apcu bcmath redis sodium pcov uuid imagick \
   && docker-php-ext-configure gd --with-jpeg --with-webp --with-freetype --with-avif \
   && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
-  && docker-php-ext-configure pcntl --enable-pcntl
+  && docker-php-ext-configure pcntl --enable-pcntl \
   && docker-php-ext-install -j$(nproc) gd imap sockets pcntl \
   && curl --output composer -Ss https://getcomposer.org/download/2.6.4/composer.phar \
   && mv composer /usr/bin/composer \
