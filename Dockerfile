@@ -23,7 +23,6 @@ RUN apt-get update -qq \
     libmagickwand-dev \
     libmariadbclient-dev-compat \
     libnss3 \
-    librabbitmq-dev \
     libsasl2-dev \
     libssl-dev \
     libssl1.0 \
@@ -46,11 +45,11 @@ RUN apt-get update -qq \
   && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
   && docker-php-ext-configure pcntl --enable-pcntl \
   && docker-php-ext-install -j$(nproc) gd imap sockets pcntl \
-  && curl --output composer -Ss https://getcomposer.org/download/2.6.4/composer.phar \
+  && curl --output composer -Ss https://getcomposer.org/download/2.6.5/composer.phar \
   && mv composer /usr/bin/composer \
   && chmod 755 /usr/bin/composer \
   && chown root:root /usr/bin/composer \
-  && curl -LO https://github.com/deployphp/deployer/releases/download/v7.3.1/deployer.phar \
+  && curl -LO https://github.com/deployphp/deployer/releases/download/v7.3.3/deployer.phar \
   && mv deployer.phar /usr/bin/dep \
   && chmod +x /usr/bin/dep \
   && groupadd -g 1001 supervisor \
