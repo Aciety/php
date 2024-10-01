@@ -4,6 +4,7 @@ ENV CFLAGS="$CFLAGS -D_GNU_SOURCE"
 ENV DEBIAN_FRONTEND noninteractive
 ENV PHP_OPENSSL yes
 ADD ./aciety.ini /usr/local/etc/php/conf.d/zz-aciety.ini
+ADD fonts/Roboto /usr/share/fonts/truetype/Roboto
 RUN apt-get update -qq \
   && apt-get dist-upgrade -y \
   && apt-get install -y \
@@ -63,6 +64,4 @@ RUN apt-get update -qq \
   && chmod +x /usr/bin/dep \
   && groupadd -g 1001 supervisor \
   && useradd -m -g 1001 -u 1001 supervisor \
-  && mkdir -p /usr/share/fonts/truetype/Roboto \
-  && cp -r fonts/Roboto /usr/share/fonts/truetype/Roboto \
   && fc-cache
