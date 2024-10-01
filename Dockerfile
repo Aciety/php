@@ -35,17 +35,26 @@ RUN apt-get update -qq \
     uuid-dev \
     wget \
     zip \
+  && git clone https://github.com/Imagick/imagick.git --depth 1 /tmp/imagick \
+  && cd /tmp/imagick \
+  && git fetch origin master \
+  && git switch master \
+  && cd /tmp/imagick \
+  && phpize \
+  && ./configure \
+  && make \
+  && make install \
   && apt-get dist-upgrade -y \
   && apt-get clean \
   && apt-get autoremove -y \
   && docker-php-ext-install -j$(nproc) pdo_mysql zip iconv intl bcmath curl exif opcache bz2 \
-  && pecl install APCu redis pcov uuid imagick \
+  && pecl install APCu redis pcov uuid \
   && docker-php-ext-enable apcu bcmath redis sodium pcov uuid imagick \
   && docker-php-ext-configure gd --with-jpeg --with-webp --with-freetype --with-avif \
   && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
   && docker-php-ext-configure pcntl --enable-pcntl \
   && docker-php-ext-install -j$(nproc) gd imap sockets pcntl \
-  && curl --output composer -Ss https://getcomposer.org/download/2.7.7/composer.phar \
+  && curl --output composer -Ss https://getcomposer.org/download/2.7.9/composer.phar \
   && mv composer /usr/bin/composer \
   && chmod 755 /usr/bin/composer \
   && chown root:root /usr/bin/composer \
