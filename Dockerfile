@@ -63,8 +63,5 @@ RUN apt-get update -qq \
   && chmod +x /usr/bin/dep \
   && groupadd -g 1001 supervisor \
   && useradd -m -g 1001 -u 1001 supervisor \
-  && curl -L https://fonts.google.com/download?family=Roboto -o Roboto.zip \
-  && mkdir -p /usr/share/fonts/truetype/Roboto \
-  && unzip Roboto.zip -d /usr/share/fonts/truetype/Roboto \
-  && rm Roboto.zip \
+  && cp -r fonts/Roboto /usr/share/fonts/truetype/Roboto \
   && fc-cache
