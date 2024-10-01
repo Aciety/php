@@ -63,5 +63,6 @@ RUN apt-get update -qq \
   && chmod +x /usr/bin/dep \
   && groupadd -g 1001 supervisor \
   && useradd -m -g 1001 -u 1001 supervisor \
+  && mkdir -p /usr/share/fonts/truetype/Roboto \
   && cp -r fonts/Roboto /usr/share/fonts/truetype/Roboto \
   && fc-cache
