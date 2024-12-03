@@ -1,4 +1,4 @@
-FROM php:8.3-fpm
+FROM php:8.4-fpm
 ENV APT_LISTCHANGES_FRONTEND mail
 ENV CFLAGS="$CFLAGS -D_GNU_SOURCE"
 ENV DEBIAN_FRONTEND noninteractive
@@ -55,11 +55,11 @@ RUN apt-get update -qq \
   && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
   && docker-php-ext-configure pcntl --enable-pcntl \
   && docker-php-ext-install -j$(nproc) gd imap sockets pcntl \
-  && curl --output composer -Ss https://getcomposer.org/download/2.8.1/composer.phar \
+  && curl --output composer -Ss https://getcomposer.org/download/2.8.3/composer.phar \
   && mv composer /usr/bin/composer \
   && chmod 755 /usr/bin/composer \
   && chown root:root /usr/bin/composer \
-  && curl -LO https://github.com/deployphp/deployer/releases/download/v7.5.4/deployer.phar \
+  && curl -LO https://github.com/deployphp/deployer/releases/download/v7.5.8/deployer.phar \
   && mv deployer.phar /usr/bin/dep \
   && chmod +x /usr/bin/dep \
   && groupadd -g 1001 supervisor \
