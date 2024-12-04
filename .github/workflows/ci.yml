@@ -6,7 +6,7 @@ on:
     - cron:  '0 0 * * *'
   push:
     branches:
-      - '8.1'
+      - '8.3'
       - 'latest'
 
 jobs:
@@ -35,7 +35,7 @@ jobs:
           context: .
           tags: |
             ghcr.io/aciety/php:${{ github.sha }}
-            ghcr.io/aciety/php:latest
+            ghcr.io/aciety/php:8.3
           push: true
 
       - name: Image digest
