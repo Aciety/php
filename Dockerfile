@@ -49,12 +49,11 @@ RUN apt-get update -qq \
   && apt-get clean \
   && apt-get autoremove -y \
   && docker-php-ext-install -j$(nproc) pdo_mysql zip iconv intl bcmath curl exif opcache bz2 \
-  && pecl install APCu redis uuid \
-  && docker-php-ext-enable apcu bcmath redis sodium uuid imagick \
+  && pecl install APCu redis pcov uuid imap \
+  && docker-php-ext-enable apcu bcmath redis sodium pcov uuid imagick \
   && docker-php-ext-configure gd --with-jpeg --with-webp --with-freetype --with-avif \
-  && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
   && docker-php-ext-configure pcntl --enable-pcntl \
-  && docker-php-ext-install -j$(nproc) gd imap sockets pcntl \
+  && docker-php-ext-install -j$(nproc) gd sockets pcntl \
   && curl --output composer -Ss https://getcomposer.org/download/2.8.3/composer.phar \
   && mv composer /usr/bin/composer \
   && chmod 755 /usr/bin/composer \
