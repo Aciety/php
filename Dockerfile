@@ -7,7 +7,7 @@ ADD ./aciety.ini /usr/local/etc/php/conf.d/zz-aciety.ini
 ADD fonts/Roboto /usr/share/fonts/truetype/Roboto
 RUN apt-get update -qq \
   && apt-get dist-upgrade -y \
-  && apt-get install -y \
+  && apt-get install -y --fix-missing \
     chromium \
     curl \
     ffmpeg \
