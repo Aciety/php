@@ -48,27 +48,30 @@ RUN apt-get update -qq \
       autoconf \
       make \
       gcc \
+  && cd /tmp \
   && git clone https://github.com/Imagick/imagick.git --depth 1 /tmp/imagick \
   && cd /tmp/imagick \
   && phpize \
   && ./configure \
   && make -j$(nproc) \
   && make install \
-  && rm -rf /tmp/imagick \
+  && cd /tmp && rm -rf /tmp/imagick \
+  && cd /tmp \
   && git clone https://github.com/amphp/ext-uv.git /tmp/php-uv \
   && cd /tmp/php-uv \
   && phpize \
   && ./configure \
   && make -j$(nproc) \
   && make install \
-  && rm -rf /tmp/php-uv \
+  && cd /tmp && rm -rf /tmp/php-uv \
+  && cd /tmp \
   && git clone https://github.com/uw-imap/imap.git /tmp/imap \
   && cd /tmp/imap \
   && make lnp EXTRACFLAGS="-fPIC -Dflock=flock" SSLTYPE=unix \
   && mkdir -p /usr/local/imap/include /usr/local/imap/lib \
   && cp c-client/*.h /usr/local/imap/include \
   && cp c-client/*.a /usr/local/imap/lib \
-  && rm -rf /tmp/imap \
+  && cd /tmp && rm -rf /tmp/imap \
   && docker-php-ext-configure gd --with-jpeg --with-webp --with-freetype --with-avif \
   && docker-php-ext-configure pcntl --enable-pcntl \
   && docker-php-ext-configure imap --with-kerberos --with-imap-ssl=/usr/local/imap \
