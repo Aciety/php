@@ -19,6 +19,7 @@ RUN apt-get update -qq \
     libfreetype6-dev \
     libicu-dev \
     libjpeg-dev \
+    libpam0g-dev \
     libkrb5-dev \
     libmagickwand-dev \
     libmariadbclient-dev-compat \
