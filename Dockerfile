@@ -12,8 +12,6 @@ RUN apt-get update -qq \
     curl \
     ffmpeg \
     git \
-    libc-client2007e \
-    libc-client2007e-dev \
     libcurl4 \
     libcurl4-gnutls-dev \
     libexif-dev \
