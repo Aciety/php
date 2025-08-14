@@ -59,7 +59,7 @@ RUN apt-get update -qq \
   && git clone https://github.com/uw-imap/imap.git /tmp/imap \
   && cd /tmp/imap \
   && make distclean || true \
-  # Patch to allow unencrypted login
+  && make oxp || true \
   && sed -i 's/#define NO_UNENCRYPTED_LOGIN 0/#define NO_UNENCRYPTED_LOGIN 1/' c-client/osdep.h \
   && make lnp SSLTYPE=unix EXTRACFLAGS="-fPIC -Dflock=flock" \
   && mkdir -p /usr/local/imap/include /usr/local/imap/lib \
