@@ -70,8 +70,7 @@ RUN apt-get update -qq \
   && cd /tmp/imap \
   && make distclean || true \
   # Patch to disable unencrypted auth (prevents cancel)
-  && sed -i 's/#define NO_UNENCRYPTED_LOGIN 0/#define NO_UNENCRYPTED_LOGIN 1/' c-client/osdep.h || true \
-  && make lnp SSLTYPE=unix EXTRACFLAGS="-fPIC -Dflock=flock" \
+  && make lnp SSLTYPE=unix EXTRACFLAGS="-fPIC -Dflock=flock ALLOW_UNENCRYPTED_LOGIN=1" \
   && mkdir -p /usr/local/imap/include /usr/local/imap/lib \
   && cp c-client/*.h /usr/local/imap/include \
   && cp c-client/*.a /usr/local/imap/lib \
@@ -84,11 +83,11 @@ RUN apt-get update -qq \
   && pecl install APCu redis uuid \
   && docker-php-ext-enable apcu bcmath redis sodium uuid imagick uv imap \
   # Composer
-  && curl -Ss -o /usr/bin/composer https://getcomposer.org/download/2.8.3/composer.phar \
+  && curl -Ss -o /usr/bin/composer https://getcomposer.org/download/2.8.10/composer.phar \
   && chmod 755 /usr/bin/composer \
   && chown root:root /usr/bin/composer \
   # Deployer
-  && curl -LO https://github.com/deployphp/deployer/releases/download/v7.5.8/deployer.phar \
+  && curl -LO https://github.com/deployphp/deployer/releases/download/v7.5.12/deployer.phar \
   && mv deployer.phar /usr/bin/dep \
   && chmod +x /usr/bin/dep \
   # User
