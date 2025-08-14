@@ -57,7 +57,7 @@ RUN apt-get update -qq \
   && make lnp SSLTYPE=unix.nopwd EXTRACFLAGS=-fPIC \
   && mkdir -p /usr/local/include/imap \
   && cp c-client/*.h /usr/local/include/imap \
-  && cp c-client/c-client.a /usr/local/lib/libc-client.a
+  && cp c-client/c-client.a /usr/local/lib/libc-client.a \
   && make -j$(nproc) \
   && make install \
   && apt-get dist-upgrade -y \
