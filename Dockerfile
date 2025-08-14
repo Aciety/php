@@ -55,7 +55,7 @@ RUN apt-get update -qq \
   && make install \
   && git clone --depth 1 --branch imap-2007f https://github.com/uw-imap/imap.git \
   && cd imap \
-  && make
+  && make \
   && apt-get dist-upgrade -y \
   && apt-get clean \
   && apt-get autoremove -y \
