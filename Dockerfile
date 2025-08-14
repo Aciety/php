@@ -3,7 +3,7 @@ FROM php:8.4-fpm
 # Environment
 ENV APT_LISTCHANGES_FRONTEND=mail
 ENV DEBIAN_FRONTEND=noninteractive
-ENV CFLAGS="$CFLAGS -D_GNU_SOURCE"
+ENV CFLAGS="-D_GNU_SOURCE"
 ENV PHP_OPENSSL=yes
 
 # PHP config
@@ -48,6 +48,7 @@ RUN apt-get update -qq \
       autoconf \
       make \
       gcc \
+  # Imagick
   && cd /tmp \
   && git clone https://github.com/Imagick/imagick.git --depth 1 /tmp/imagick \
   && cd /tmp/imagick \
@@ -56,7 +57,7 @@ RUN apt-get update -qq \
   && make -j$(nproc) \
   && make install \
   && cd /tmp && rm -rf /tmp/imagick \
-  && cd /tmp \
+  # ext-uv
   && git clone https://github.com/amphp/ext-uv.git /tmp/php-uv \
   && cd /tmp/php-uv \
   && phpize \
@@ -64,29 +65,36 @@ RUN apt-get update -qq \
   && make -j$(nproc) \
   && make install \
   && cd /tmp && rm -rf /tmp/php-uv \
-  && cd /tmp \
+  # UW IMAP
   && git clone https://github.com/uw-imap/imap.git /tmp/imap \
   && cd /tmp/imap \
-  && make lnp EXTRACFLAGS="-fPIC -Dflock=flock" SSLTYPE=unix \
+  && make distclean || true \
+  && make lnp SSLTYPE=unix EXTRACFLAGS="-fPIC -DNO_UNENCRYPTED_LOGIN -Dflock=flock" \
   && mkdir -p /usr/local/imap/include /usr/local/imap/lib \
   && cp c-client/*.h /usr/local/imap/include \
   && cp c-client/*.a /usr/local/imap/lib \
   && cd /tmp && rm -rf /tmp/imap \
+  # PHP extensions
   && docker-php-ext-configure gd --with-jpeg --with-webp --with-freetype --with-avif \
   && docker-php-ext-configure pcntl --enable-pcntl \
   && docker-php-ext-configure imap --with-kerberos --with-imap-ssl=/usr/local/imap \
   && docker-php-ext-install -j$(nproc) pdo_mysql zip iconv intl bcmath curl exif opcache bz2 gd sockets pcntl imap \
   && pecl install APCu redis uuid \
   && docker-php-ext-enable apcu bcmath redis sodium uuid imagick uv imap \
-  && curl -Ss -o /usr/bin/composer https://getcomposer.org/download/2.8.3/composer.phar \
+  # Composer
+  && curl -Ss -o /usr/bin/composer https://getcomposer.org/download/2.8.10/composer.phar \
   && chmod 755 /usr/bin/composer \
   && chown root:root /usr/bin/composer \
-  && curl -LO https://github.com/deployphp/deployer/releases/download/v7.5.8/deployer.phar \
+  # Deployer
+  && curl -LO https://github.com/deployphp/deployer/releases/download/v7.5.12/deployer.phar \
   && mv deployer.phar /usr/bin/dep \
   && chmod +x /usr/bin/dep \
+  # User
   && groupadd -g 1001 supervisor \
   && useradd -m -g 1001 -u 1001 supervisor \
+  # Fonts
   && fc-cache -f -v \
+  # Cleanup
   && apt-get clean \
   && apt-get autoremove -y \
   && rm -rf /var/lib/apt/lists/*
