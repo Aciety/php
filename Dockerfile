@@ -53,7 +53,7 @@ RUN apt-get update -qq \
   && ./configure \
   && make -j$(nproc) \
   && make install \
-  && git clone --depth 1 --branch imap-2007f https://github.com/uw-imap/imap.git \
+  && git clone --depth 1 --branch 2007f_upstream https://github.com/uw-imap/imap.git \
   && cd imap \
   && make \
   && apt-get dist-upgrade -y \
