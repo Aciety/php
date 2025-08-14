@@ -8,6 +8,7 @@ ADD fonts/Roboto /usr/share/fonts/truetype/Roboto
 RUN apt-get update -qq \
   && apt-get dist-upgrade -y \
   && apt-get install -y --fix-missing \
+    build-essential \
     chromium \
     curl \
     ffmpeg \
@@ -50,6 +51,13 @@ RUN apt-get update -qq \
   && cd /tmp/php-uv \
   && phpize \
   && ./configure \
+  && wget https://ftp.uni-stuttgart.de/pub/unix/mail/imap/c-client.tar.gz && \
+  && tar xzf c-client.tar.gz && \
+  && cd imap-2007f && \
+  && make lnp SSLTYPE=unix.nopwd EXTRACFLAGS=-fPIC && \
+  && mkdir -p /usr/local/include/imap && \
+  && cp c-client/*.h /usr/local/include/imap && \
+  && cp c-client/c-client.a /usr/local/lib/libc-client.a
   && make -j$(nproc) \
   && make install \
   && apt-get dist-upgrade -y \
