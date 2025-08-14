@@ -55,6 +55,7 @@ RUN apt-get update -qq \
   && make install \
   && git clone https://github.com/uw-imap/imap.git \
   && cd imap \
+  && make lnp \
   && make \
   && apt-get dist-upgrade -y \
   && apt-get clean \
