@@ -28,9 +28,7 @@ RUN apt-get update -qq \
     libssl-dev \
     libwebp-dev \
     libzip-dev \
-    libzip4 \
     libavif-dev \
-    libavif15 \
     poppler-utils \
     mariadb-client \
     unzip \
