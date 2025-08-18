@@ -23,12 +23,14 @@ RUN apt-get update -qq \
     libicu-dev \
     libjpeg-dev \
     libmagickwand-dev \
-    libmariadb-dev-compat \
+    libmariadbclient-dev-compat \
     libnss3 \
     libssl-dev \
     libwebp-dev \
     libzip-dev \
+    libzip4 \
     libavif-dev \
+    libavif15 \
     poppler-utils \
     mariadb-client \
     unzip \
@@ -40,9 +42,11 @@ RUN apt-get update -qq \
     autoconf \
   && git clone https://github.com/Imagick/imagick.git --depth 1 /tmp/imagick \
   && cd /tmp/imagick \
+  && git fetch origin master \
+  && git switch master \
   && phpize \
   && ./configure \
-  && make -j$(nproc) \
+  && make \
   && make install \
   && git clone https://github.com/amphp/ext-uv.git /tmp/php-uv \
   && cd /tmp/php-uv \
@@ -54,9 +58,10 @@ RUN apt-get update -qq \
   && pecl install APCu redis uuid \
   && docker-php-ext-enable apcu bcmath redis sodium uuid imagick uv \
   && docker-php-ext-configure gd --with-jpeg --with-webp --with-freetype --with-avif \
+  && docker-php-ext-configure pcntl --enable-pcntl \
   && docker-php-ext-install -j$(nproc) gd sockets pcntl \
-  && curl -SsLO https://getcomposer.org/download/2.8.10/composer.phar \
-  && mv composer.phar /usr/bin/composer \
+  && curl --output composer -Ss https://getcomposer.org/download/2.8.10/composer.phar \
+  && mv composer /usr/bin/composer \
   && chmod 755 /usr/bin/composer \
   && chown root:root /usr/bin/composer \
   && curl -LO https://github.com/deployphp/deployer/releases/download/v7.5.12/deployer.phar \
@@ -64,13 +69,4 @@ RUN apt-get update -qq \
   && chmod +x /usr/bin/dep \
   && groupadd -g 1001 supervisor \
   && useradd -m -g 1001 -u 1001 supervisor \
-  && fc-cache \
-  && apt-get purge -y --auto-remove \
-    build-essential \
-    git \
-    autoconf \
-    libcurl4-gnutls-dev \
-    libexif-dev \
-    uuid-dev \
-    libuv1-dev \
-  && rm -rf /var/lib/apt/lists/* /tmp/*
+  && fc-cache
