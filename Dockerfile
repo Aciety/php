@@ -44,7 +44,7 @@ RUN apt-get update -qq \
   && git switch master \
   && phpize \
   && ./configure \
-  && make \
+  && make -j$(nproc) \
   && make install \
   && git clone https://github.com/amphp/ext-uv.git /tmp/php-uv \
   && cd /tmp/php-uv \
@@ -74,6 +74,14 @@ RUN apt-get update -qq \
     autoconf \
     libcurl4-gnutls-dev \
     libexif-dev \
+    libfreetype6-dev \
+    libicu-dev \
+    libjpeg-dev \
+    libmagickwand-dev \
+    libssl-dev \
+    libwebp-dev \
+    libzip-dev \
+    libavif-dev \
     uuid-dev \
     libuv1-dev \
   && rm -rf /var/lib/apt/lists/* /tmp/*
