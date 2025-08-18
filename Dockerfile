@@ -74,14 +74,6 @@ RUN apt-get update -qq \
     autoconf \
     libcurl4-gnutls-dev \
     libexif-dev \
-    libfreetype6-dev \
-    libicu-dev \
-    libjpeg-dev \
-    libmagickwand-dev \
-    libssl-dev \
-    libwebp-dev \
-    libzip-dev \
-    libavif-dev \
     uuid-dev \
     libuv1-dev \
   && rm -rf /var/lib/apt/lists/* /tmp/*
